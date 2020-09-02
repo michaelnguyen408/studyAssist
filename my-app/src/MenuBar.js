@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu'
-import { Typography, Button, Divider, Grid, Link } from '@material-ui/core';
+import { Typography, Button, Divider, Grid } from '@material-ui/core';
 import CakeIcon from '@material-ui/icons/Cake';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,18 +20,37 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     flexGrow: 1,
-    align: 'center'
+    maxWidth: 200,
+    textAlign: 'center'
   },
   title: {
-    // flexGrow: 1,
+    padding: 7,
     color: "palevioletred",
     fontFamily: "Times New Roman",
   },
 }));
 
+const LogoButton = withStyles({
+  root: {
+    boxShadow: 'none',
+    textTransform: 'none',
+    '&:hover': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:focus': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+  },
+})(Button);
+
 export default function MenuBar () {
   const classes = useStyles();
-  const preventDefault = (event) => event.preventDefault();
 
   return (
     <div className={classes.root}>
@@ -40,18 +59,16 @@ export default function MenuBar () {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Link href="#" onClick={preventDefault} className={classes.logo} color="inherit" underline="none">
-            <Grid container justify="center" spacing={1}>
+            <Grid container spacing={1} justify="center">
               <Grid item>
-                <CakeIcon fontSize='large' />
-              </Grid>
-              <Grid item>
-                <Typography className={classes.title} variant="h4">
-                  studyAssist
-                </Typography>
+                <LogoButton disableRipple>
+                  <CakeIcon fontSize='large' color="primary"/>
+                  <Typography className={classes.title} variant="h4">
+                    studyAssist
+                  </Typography>
+                </LogoButton>
               </Grid>
             </Grid>
-          </Link>
           <Button color="inherit">
             Login
           </Button>
