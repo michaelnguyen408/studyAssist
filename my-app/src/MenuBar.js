@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bar: {
     backgroundColor: 'rgba(255, 239, 213, 0.9)',
-    color: "palevioletred",
+    // color: "palevioletred",
   },
   logo: {
     flexGrow: 1,
@@ -54,9 +54,9 @@ export default function MenuBar () {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.bar} elevation={0}>
+      <AppBar position="fixed" className={classes.bar} elevation={0} color="primary">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="menu">
             <MenuIcon />
           </IconButton>
             <Grid container spacing={1} justify="center">
@@ -69,7 +69,7 @@ export default function MenuBar () {
                 </LogoButton>
               </Grid>
             </Grid>
-          <Button color="inherit">
+          <Button color="primary">
             Login
           </Button>
         </Toolbar>

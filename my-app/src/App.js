@@ -9,10 +9,12 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: 'rgb(219,112,147)'
+      // main: 'rgb(219,112,147)'
+      main: 'rgb(21,21,21)'
     },
     secondary: {
-      main: 'rgb(255, 239, 213)'
+      // main: 'rgb(255, 239, 213)'
+      main: 'rgb(255,255,255)'
     }
   }
 });
