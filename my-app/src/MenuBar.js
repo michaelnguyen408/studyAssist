@@ -4,30 +4,42 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu'
-import { Typography, Button, Divider, Grid } from '@material-ui/core';
+import { Typography, Button, Grid, Box, Hidden, Icon } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer'
 import CakeIcon from '@material-ui/icons/Cake';
+import { mergeClasses } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  bar: {
-    backgroundColor: 'rgba(255, 239, 213, 0.9)',
-    // color: "palevioletred",
-  },
-  logo: {
-    flexGrow: 1,
-    maxWidth: 200,
-    textAlign: 'center'
+  icon: {
+    color: 'rgb(255,0,51)',
+    scale: 5
   },
   title: {
     padding: 7,
-    color: "palevioletred",
-    fontFamily: "Times New Roman",
   },
+  toolbar: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [theme.breakpoints.up('xs')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 960,
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 1280,
+    },
+  },
+  burger: {
+    color: 'white',
+  },
+  login: {
+    textTransform: 'none',
+    fontSize: 16,
+  }
 }));
 
 const LogoButton = withStyles({
@@ -55,25 +67,34 @@ export default function MenuBar () {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.bar} elevation={0} color="primary">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-            <Grid container spacing={1} justify="center">
-              <Grid item>
-                <LogoButton disableRipple>
-                  <CakeIcon fontSize='large' color="primary"/>
-                  <Typography className={classes.title} variant="h4">
-                    studyAssist
-                  </Typography>
-                </LogoButton>
+        <Toolbar className={classes.toolbar}>
+              <Grid container spacing={1} 
+                // justify="center"
+              >
+                <Grid item>
+                  <LogoButton disableRipple>
+                    <CakeIcon fontSize='large' className={classes.icon}/>
+                    <Typography className={classes.title} variant="h4" color="secondary">
+                      <Box fontWeight="fontWeightBold">
+                        studyAssist
+                      </Box>
+                    </Typography>
+                  </LogoButton>
+                </Grid>
               </Grid>
-            </Grid>
-          <Button color="primary">
-            Login
-          </Button>
+            <Hidden smDown>
+              <Button color="secondary" variant='outlined' disableRipple='true'>
+                <Typography className={classes.login} variant="caption">
+                  Login
+                </Typography>
+              </Button>
+            </Hidden>
+            <Hidden mdUp>
+              <IconButton edge='end'>
+                <MenuIcon className={classes.burger} />
+              </IconButton>
+            </Hidden>
         </Toolbar>
-        <Divider />
       </AppBar>
       <Toolbar />
     </div>
