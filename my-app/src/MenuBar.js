@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu'
-import { Typography, Button, Grid, Box, Hidden, Icon } from '@material-ui/core';
+import { Typography, Button, Grid, Box, Hidden, Icon, SwipeableDrawer, List, ListItem, ListItemText, CssBaseline, Divider } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer'
 import CakeIcon from '@material-ui/icons/Cake';
-import { mergeClasses } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +38,11 @@ const useStyles = makeStyles((theme) => ({
   login: {
     textTransform: 'none',
     fontSize: 16,
-  }
+  },
+  drawer: {
+    width: 300,
+    backgroundColor: 'black'
+  },
 }));
 
 const LogoButton = withStyles({
@@ -61,9 +64,17 @@ const LogoButton = withStyles({
   },
 })(Button);
 
+
 export default function MenuBar () {
   const classes = useStyles();
-
+  const [state, setState] = React.useState({
+    right: false,
+  });
+  
+  const toggleDrawer = (open) => {
+    setState({...state, right: open});
+  };
+  
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.bar} elevation={0} color="primary">
@@ -74,8 +85,8 @@ export default function MenuBar () {
                 <Grid item>
                   <LogoButton disableRipple>
                     <CakeIcon fontSize='large' className={classes.icon}/>
-                    <Typography className={classes.title} variant="h4" color="secondary">
-                      <Box fontWeight="fontWeightBold">
+                    <Typography className={classes.title} variant="h5" color="secondary">
+                      <Box fontWeight="fontWeightBold" fontSize={22}>
                         studyAssist
                       </Box>
                     </Typography>
@@ -90,13 +101,41 @@ export default function MenuBar () {
               </Button>
             </Hidden>
             <Hidden mdUp>
+            <React.Fragment>
               <IconButton edge='end'>
-                <MenuIcon className={classes.burger} />
+                <MenuIcon className={classes.burger} onClick={() => toggleDrawer(true)} />
               </IconButton>
+            </React.Fragment>
             </Hidden>
         </Toolbar>
       </AppBar>
+
       <Toolbar />
+      
+      <Drawer
+      anchor='right'
+      open={state['right']}
+      onClose={() => toggleDrawer(false)}
+      classes={{paper: classes.drawer}}
+      >
+        <div
+          role="presentation"
+          onClick={() => toggleDrawer(false)}
+          onKeyDown={() => toggleDrawer(false)}
+        >
+          <List>
+            {['Login', 'Test'].map((text) => (
+              <ListItem button key={text}>
+                <ListItemText>
+                  <Box fontWeight="fontWeightBold" color="white" fontSize={32}>
+                    {text}
+                  </Box>
+                </ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      </Drawer>
     </div>
   );
 }

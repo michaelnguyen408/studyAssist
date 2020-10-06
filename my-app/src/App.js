@@ -25,20 +25,6 @@ function App() {
         <MenuBar />
 
         <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
       </div>
     </ThemeProvider>
   );
