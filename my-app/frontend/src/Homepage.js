@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import img from './stock-photo.jpg'
 import { Paper, Typography, Box, Card, CardContent, createMuiTheme, responsiveFontSizes, ThemeProvider, Button, CardMedia, Container, CssBaseline } from '@material-ui/core';
+import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -11,17 +12,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  headline: {
-    fontSize: 50,
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
+  icon: {
+    fontSize: 300,
+    marginTop: 50,
   },
-  container: {
-    marginTop: 100,
-    marginBottom: 100,
-  }
+  button: {
+    marginTop: 20,
+    background: 'rgb(255,0,51)',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: 'rgb(255,0,51)',
+    }
+  },
 }));
 
 export default function Homepage () {
@@ -29,12 +31,28 @@ export default function Homepage () {
 
   return (
     <div className={classes.root}>
-    <CssBaseline/>
-      <Container className={classes.container} maxWidth='xl' disableGutters='true'>
-        <Typography className={classes.headline}>
-          Bruh
-        </Typography>
-      </Container>
+    {/* <CssBaseline/> */}
+      <ThemeProvider theme={theme}>
+        <Grid container 
+          alignItems='center'
+          justify='center'
+          spacing={0}
+          direction='column'>
+          <Grid item>
+            <DirectionsRunRoundedIcon className={classes.icon} />
+          </Grid>
+          <Grid item>
+            <Typography variant='h4'>
+              Transferring has never been this easy.
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Button className={classes.button} variant='contained' disableRipple="true" disableElevation='true'>
+              Get Started
+            </Button>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     </div>
   )
 }
