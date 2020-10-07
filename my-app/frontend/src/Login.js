@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField, Box, Button } from '@material-ui/core';
+import { TextField, Box, Button, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +46,12 @@ export default function  LoginPage () {
         <Button variant="contained" className={classes.button} disableRipple='true' disableElevation='true'>
           Log In
         </Button>
+        <Typography variant="h7" className={classes.content}>
+          Don't have an account?
+        </Typography>
+        <Link href="#" className={classes.content} style= {{color:'rgb(255,0,51)'}}>
+          Register here.
+        </Link>
       </div>
     </form>
   );
