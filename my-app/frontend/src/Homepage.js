@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   headline: {
+    fontSize: 50,
     padding: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
       backgroundColor: theme.palette.primary.main,
