@@ -1,9 +1,8 @@
 import React from 'react';
-import LoginPage from "./Login"
+import Login from "./Login"
 import MenuBar from "./MenuBar"
 import Homepage from "./Homepage"
 import './App.css';
-import { Helmet } from 'react-helmet';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -24,7 +23,8 @@ function App() {
       <div>
         <MenuBar />
 
-        <Homepage />
+        {/* <Homepage /> */}
+        <Login />
       </div>
     </ThemeProvider>
   );

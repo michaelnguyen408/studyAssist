@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import img from './stock-photo.jpg'
-import { Paper, Typography, Box, Card, CardContent, createMuiTheme, responsiveFontSizes, ThemeProvider, Button, CardMedia, Container, CssBaseline } from '@material-ui/core';
+import { Typography,  createMuiTheme, responsiveFontSizes, ThemeProvider, Button } from '@material-ui/core';
 import DirectionsRunRoundedIcon from '@material-ui/icons/DirectionsRunRounded';
 
 let theme = createMuiTheme();
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'rgb(255,0,51)',
     color: 'white',
     '&:hover': {
-      backgroundColor: 'rgb(255,0,51)',
+      backgroundColor: 'black',
     }
   },
 }));
@@ -31,7 +30,6 @@ export default function Homepage () {
 
   return (
     <div className={classes.root}>
-    {/* <CssBaseline/> */}
       <ThemeProvider theme={theme}>
         <Grid container 
           alignItems='center'
