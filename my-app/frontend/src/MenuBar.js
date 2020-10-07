@@ -4,9 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu'
-import { Typography, Button, Grid, Box, Hidden, Icon, SwipeableDrawer, List, ListItem, ListItemText, CssBaseline, Divider } from '@material-ui/core';
+import { Typography, Button, Grid, Box, Hidden, Icon, SwipeableDrawer, List, ListItem, ListItemText, CssBaseline, Divider, ListItemIcon } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer'
-import CakeIcon from '@material-ui/icons/Cake';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,7 +84,7 @@ export default function MenuBar () {
               >
                 <Grid item>
                   <LogoButton disableRipple>
-                    <CakeIcon fontSize='large' className={classes.icon}/>
+                    <DeleteRoundedIcon fontSize='large' className={classes.icon}/>
                     <Typography className={classes.title} variant="h5" color="secondary">
                       <Box fontWeight="fontWeightBold" fontSize={22}>
                         studyAssist
@@ -126,6 +126,7 @@ export default function MenuBar () {
           <List>
             {['Login', 'Test'].map((text) => (
               <ListItem button key={text}>
+                <ListItemIcon />
                 <ListItemText>
                   <Box fontWeight="fontWeightBold" color="white" fontSize={32}>
                     {text}
