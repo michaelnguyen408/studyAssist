@@ -29,17 +29,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function  LoginPage () {
   const classes  = useStyles();
+  const username = useRef(null);
+  const password = useRef(null);
+  
+  const onSubmit = (event) => {
+    event.preventDefault();
+    alert(username.current.value + " " + password.current.value)
+  }
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div className={classes.root}>
           <Box fontWeight="bold" fontSize={22} className={classes.content}>
             Login
           </Box>
         <TextField required 
           className={classes.content} 
-          label="Username / Email" />
-        <TextField required className={classes.content} label="Password" type="password" />
+          label="Username / Email" 
+          inputRef={username}
+          />
+        <TextField required 
+          className={classes.content} 
+          label="Password" 
+          type="password" 
+          inputRef={password}
+          />
         <Button variant="contained" className={classes.button} disableRipple='true' disableElevation='true'>
           Log In
         </Button>
