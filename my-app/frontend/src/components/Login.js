@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import { TextField, Box, Button, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,32 +31,50 @@ const useStyles = makeStyles((theme) => ({
 
 export default function  LoginPage () {
   const classes  = useStyles();
-  const username = useRef(null);
-  const password = useRef(null);
-  
+  const form = useRef();
+
+  const [values, setValue] = React.useState({
+    'user': '',
+    'pass': ''
+  })
+  const handleChange = (value) => (event) => {
+    setValue({...values, [value]: event.target.value})
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
-    alert(username.current.value + " " + password.current.value)
+    alert(values.user + " " + values.pass)
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className={classes.root}>
+    // TODO: Sign in with google
+    <div className={classes.root}>
+      <ValidatorForm
+          ref={form}
+          onSubmit={onSubmit}
+      >
           <Box fontWeight="bold" fontSize={22} className={classes.content}>
             Login
           </Box>
-        <TextField required 
+        <TextValidator
           className={classes.content} 
           label="Username / Email" 
-          inputRef={username}
+          value={values.user}
+          validators={['required','isEmail']}
+          errorMessages={["This field is required.", "Invalid email address."]}
+          onChange={handleChange('user')}
           />
-        <TextField required 
+        <TextValidator
           className={classes.content} 
           label="Password" 
           type="password" 
-          inputRef={password}
+          value={values.pass}
+          validators={['required']}
+          errorMessages={"This field is required."}
+          onChange={handleChange('pass')}
           />
-        <Button variant="contained" className={classes.button} disableRipple='true' disableElevation='true'>
+        <Button 
+        type='submit' variant="contained" className={classes.button} disableRipple='true' disableElevation='true'>
           Log In
         </Button>
         <Typography variant="h7" className={classes.content}>
@@ -63,7 +83,7 @@ export default function  LoginPage () {
         <Link href="/register" className={classes.content} style= {{color:'rgb(255,0,51)'}}>
           Register here.
         </Link>
-      </div>
-    </form>
+      </ValidatorForm>
+    </div>
   );
 }

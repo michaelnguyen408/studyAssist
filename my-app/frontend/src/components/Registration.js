@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import makeStyles from '@material-ui/styles/makeStyles'
 import { TextField, Box, Button } from '@material-ui/core';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,44 +30,63 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Registration () {
   const classes = useStyles();
-  const username = useRef(null);
-  const email = useRef(null);
-  const password = useRef(null);
-  
+  const form = useRef();
+
+  const [values, setValue] = React.useState({
+    'user':  '',
+    'email': '',
+    'pass':  '',
+  })
+  const handleChange = (value) => (event) => {
+    setValue({...values, [value]: event.target.value})
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
-    alert(username.current.value + " " 
-        + email.current.value + " " 
-        + password.current.value)
+    alert(values.user + " " 
+        + values.email + " " 
+        + values.pass)
   }
 
   return (
     // TODO: Register by google account
-    <form onSubmit={onSubmit}>
-      <div className={classes.root}>
+    
+    <div className={classes.root}>
+      <ValidatorForm
+        ref={form}
+        onSubmit={onSubmit}>
           <Box fontWeight="bold" fontSize={22} className={classes.content}>
             Registration
           </Box>
-        <TextField required 
+        <TextValidator
           className={classes.content} 
           label="Username" 
-          inputRef={username}
+          value={values.user}
+          validators={['required']}
+          errorMessages={"This field is required."}
+          onChange={handleChange('user')}
           />
-        <TextField required 
+        <TextValidator
           className={classes.content} 
-          label="Email"  
-          inputRef={email}
+          label="Email" 
+          value={values.email}
+          validators={['required','isEmail']}
+          errorMessages={["This field is required.", "Invalid email address."]}
+          onChange={handleChange('email')}
           />
-        <TextField required 
+        <TextValidator
           className={classes.content} 
           label="Password" 
-          type="password"
-          inputRef={password} 
+          type="password" 
+          value={values.pass}
+          validators={['required']}
+          errorMessages={"This field is required."}
+          onChange={handleChange('pass')}
           />
         <Button variant="contained" className={classes.button} disableRipple='true' disableElevation='true' type='submit'>
           Register
         </Button>
-      </div>
-    </form>
+    </ValidatorForm>
+  </div>
   );
 }
