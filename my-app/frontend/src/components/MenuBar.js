@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
     width: 300,
     backgroundColor: 'black'
   },
+  btn: {
+    marginLeft: 10,
+    '&:hover': {
+      color: 'white'
+    }
+  }
 }));
 
 const LogoButton = withStyles({
@@ -97,9 +103,20 @@ export default function MenuBar () {
                 </Grid>
               </Grid>
             <Hidden smDown>
-              <Button color="secondary" variant='outlined' disableRipple='true'>
+              <Button  
+                className={classes.btn} 
+                component={Link} to="/login"
+                color="secondary" variant='outlined' disableRipple='true'>
                 <Typography className={classes.login} variant="caption">
                   Login
+                </Typography>
+              </Button>
+              <Button 
+                className={classes.btn} 
+                component={Link} to="/register"
+                color='secondary' variant='outlined' disableRipple='true'>
+                <Typography className={classes.login} variant="caption">
+                  Register
                 </Typography>
               </Button>
             </Hidden>
