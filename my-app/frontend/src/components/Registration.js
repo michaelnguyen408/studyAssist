@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import makeStyles from '@material-ui/styles/makeStyles'
 import { TextField, Box, Button } from '@material-ui/core';
 
@@ -29,22 +29,41 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Registration () {
   const classes = useStyles();
+  const username = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  
+  const onSubmit = (event) => {
+    event.preventDefault();
+    alert(username.current.value + " " 
+        + email.current.value + " " 
+        + password.current.value)
+  }
 
   return (
     // TODO: Register by google account
-    <form>
+    <form onSubmit={onSubmit}>
       <div className={classes.root}>
           <Box fontWeight="bold" fontSize={22} className={classes.content}>
             Registration
           </Box>
         <TextField required 
           className={classes.content} 
-          label="Username" />
+          label="Username" 
+          inputRef={username}
+          />
         <TextField required 
           className={classes.content} 
-          label="Email" />
-        <TextField required className={classes.content} label="Password" type="password" />
-        <Button variant="contained" className={classes.button} disableRipple='true' disableElevation='true'>
+          label="Email"  
+          inputRef={email}
+          />
+        <TextField required 
+          className={classes.content} 
+          label="Password" 
+          type="password"
+          inputRef={password} 
+          />
+        <Button variant="contained" className={classes.button} disableRipple='true' disableElevation='true' type='submit'>
           Register
         </Button>
       </div>
