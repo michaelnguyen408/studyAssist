@@ -1,7 +1,8 @@
 import React from 'react';
-import Login from "./Login"
-import MenuBar from "./MenuBar"
-import Homepage from "./Homepage"
+import Login from "./components/Login"
+import MenuBar from "./components/MenuBar"
+import Homepage from "./components/Homepage"
+import Registration from './components/Registration'
 import './App.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -24,7 +25,8 @@ function App() {
         <MenuBar />
 
         {/* <Homepage /> */}
-        <Login />
+        {/* <Login /> */}
+        <Registration />
       </div>
     </ThemeProvider>
   );
