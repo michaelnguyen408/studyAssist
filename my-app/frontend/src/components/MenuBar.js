@@ -83,7 +83,7 @@ export default function MenuBar () {
                 // justify="center"
               >
                 <Grid item>
-                  <LogoButton disableRipple>
+                  <LogoButton disableRipple component='Link' to='#'>
                     <DeleteRoundedIcon fontSize='large' className={classes.icon}/>
                     <Typography className={classes.title} variant="h5" color="secondary">
                       <Box fontWeight="fontWeightBold" fontSize={22}>
