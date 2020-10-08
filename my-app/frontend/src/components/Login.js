@@ -60,7 +60,7 @@ export default function  LoginPage () {
         <Typography variant="h7" className={classes.content}>
           Don't have an account?
         </Typography>
-        <Link href="#" className={classes.content} style= {{color:'rgb(255,0,51)'}}>
+        <Link href="/register" className={classes.content} style= {{color:'rgb(255,0,51)'}}>
           Register here.
         </Link>
       </div>
