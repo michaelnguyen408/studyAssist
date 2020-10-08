@@ -5,6 +5,7 @@ import Homepage from "./components/Homepage"
 import Registration from './components/Registration'
 import './App.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const theme = createMuiTheme({
   palette: {
@@ -20,15 +21,22 @@ const theme = createMuiTheme({
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-        <MenuBar />
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <div>
+          <MenuBar />
 
-        {/* <Homepage /> */}
-        {/* <Login /> */}
-        <Registration />
-      </div>
-    </ThemeProvider>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/login' component={Login} />
+            <Route path='/register' component={Registration} />
+          </Switch>
+          {/* <Homepage /> */}
+          {/* <Login /> */}
+          {/* <Registration /> */}
+        </div>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

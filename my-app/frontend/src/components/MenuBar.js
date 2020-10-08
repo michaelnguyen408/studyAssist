@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { Typography, Button, Grid, Box, Hidden,  List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer'
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +71,8 @@ export default function MenuBar () {
   const [state, setState] = React.useState({
     right: false,
   });
+  const list = ['Login', 'Register']
+  const link = ['/login', '/register']
   
   const toggleDrawer = (open) => {
     setState({...state, right: open});
@@ -83,14 +86,14 @@ export default function MenuBar () {
                 // justify="center"
               >
                 <Grid item>
-                  <LogoButton disableRipple component='Link' to='#'>
-                    <DeleteRoundedIcon fontSize='large' className={classes.icon}/>
-                    <Typography className={classes.title} variant="h5" color="secondary">
-                      <Box fontWeight="fontWeightBold" fontSize={22}>
-                        studyAssist
-                      </Box>
-                    </Typography>
-                  </LogoButton>
+                    <LogoButton disableRipple component={Link} to='/'>
+                      <DeleteRoundedIcon fontSize='large' className={classes.icon}/>
+                      <Typography className={classes.title} variant="h5" color="secondary">
+                        <Box fontWeight="fontWeightBold" fontSize={22}>
+                          studyAssist
+                        </Box>
+                      </Typography>
+                    </LogoButton>
                 </Grid>
               </Grid>
             <Hidden smDown>
@@ -124,8 +127,8 @@ export default function MenuBar () {
           onKeyDown={() => toggleDrawer(false)}
         >
           <List>
-            {['Login', 'Test'].map((text) => (
-              <ListItem button key={text}>
+            {list.map((text, index) => (
+              <ListItem button key={text} component={Link} to={link[index]}>
                 <ListItemIcon />
                 <ListItemText>
                   <Box fontWeight="fontWeightBold" color="white" fontSize={32}>
